@@ -13,48 +13,48 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: clamp(16px, 3vw, 48px);
     min-height: 100vh;
 }
 
 header {
     width: 100%;
-    max-width: 800px;
-    margin-bottom: 20px;
+    max-width: 1600px;
+    margin-bottom: clamp(20px, 3vh, 40px);
     text-align: center;
     border-bottom: 2px solid #333333;
     padding-bottom: 10px;
 }
 
 header h1 {
-    font-size: 1.5rem;
+    font-size: clamp(1.8rem, 3vw, 3rem);
     color: #e5e5e5;
     letter-spacing: 2px;
 }
 
 main {
     width: 100%;
-    max-width: 800px;
+    max-width: 1600px;
     display: flex;
     flex-direction: column;
-    gap: 12px; /* 枠と枠の間のすきま */
+    gap: clamp(12px, 1.8vh, 24px);
 }
 
 /* 共通枠（waku）のデザイン：黒背景＋白枠 */
 .waku {
     display: flex;
     background-color: #000000;
-    border: 2px solid #ffffff;
-    border-radius: 4px;
-    min-height: 90px;
+    border: 3px solid #ffffff;
+    border-radius: 6px;
+    min-height: clamp(130px, 21vh, 230px);
     overflow: hidden;
 }
 
 /* 左エリア：発車時刻ボックス */
 .time-box {
-    width: 130px;
-    min-width: 130px;
-    border-right: 2px solid #ffffff;
+    width: clamp(150px, 20vw, 280px);
+    min-width: clamp(150px, 20vw, 280px);
+    border-right: 3px solid #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +62,7 @@ main {
 }
 
 .time {
-    font-size: 1.8rem;
+    font-size: clamp(2.5rem, 5vw, 5rem);
     font-weight: bold;
     color: #00ffcc; /* LED風シアン色 */
     /* 数字の桁揃え用に端末の等幅数字（Tabular Nums）を有効化 */
@@ -81,51 +81,105 @@ main {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 8px 12px;
+    gap: clamp(12px, 1.5vw, 24px);
+    min-width: 0;
+    padding: clamp(12px, 2vw, 28px);
     border-bottom: 1px solid #333333;
 }
 
 .badge {
     background-color: #d97706; /* JRオレンジ色 */
     color: #ffffff;
-    padding: 2px 8px;
-    border-radius: 3px;
-    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: clamp(1.1rem, 1.8vw, 1.8rem);
     font-weight: bold;
 }
 
 .line {
     color: #aaaaaa;
-    font-size: 0.95rem;
+    font-size: clamp(1.15rem, 2vw, 2rem);
 }
 
 .destination {
-    font-size: 1.3rem;
+    font-size: clamp(1.8rem, 3.5vw, 3.8rem);
     font-weight: bold;
     color: #ffffff;
     flex: 1; /* 行先を一番広く確保 */
+    min-width: 0;
 }
 
 .platform {
-    font-size: 1.1rem;
+    flex: 0 0 auto;
+    border: 2px solid #facc15;
+    border-radius: 4px;
+    padding: 8px 14px;
+    font-size: clamp(1.4rem, 2.5vw, 2.6rem);
     font-weight: bold;
     color: #facc15; /* のりば用の黄色 */
 }
 
 /* 右下段：備考・停車駅情報 */
 .info-bottom {
-    height: 32px;
+    height: clamp(42px, 6vh, 64px);
+    min-width: 0;
     display: flex;
     align-items: center;
-    padding: 0 12px;
+    padding: 0 clamp(12px, 2vw, 28px);
     background-color: #0a0a0a;
 }
 
 .remarks {
-    font-size: 0.85rem;
-    color: #888888;
+    display: block;
+    flex: 1;
+    min-width: 0;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    color: #b8b8b8;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
+    }
+
+    .time-box {
+        width: 100px;
+        min-width: 100px;
+    }
+
+    .time {
+        font-size: 2rem;
+    }
+
+    .info-top {
+        gap: 8px;
+        padding: 10px;
+        flex-wrap: wrap;
+    }
+
+    .destination {
+        font-size: 1.4rem;
+    }
+
+    .platform {
+        font-size: 1.15rem;
+        padding: 4px 8px;
+    }
+
+    .line {
+        font-size: 1rem;
+    }
+
+    .info-bottom {
+        height: 38px;
+        padding: 0 10px;
+    }
+
+    .remarks {
+        font-size: 0.9rem;
+    }
 }
